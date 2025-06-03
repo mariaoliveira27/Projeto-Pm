@@ -27,7 +27,7 @@ No método `main`, o sistema realiza as seguintes operações:
 
 O diagrama UML abaixo representa a estrutura inicial do sistema, servindo como base para a modelagem das classes e suas relações.
 
-![Diagrama UML](./DiagramaUML.png)
+![Diagrama UML](/Hackathons/DiagramaUML.png)
 
 ## Como Executar
 

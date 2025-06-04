@@ -1,40 +1,81 @@
-## Contexto do Projeto
+# Sistema de Gerenciamento de Hackathon Universitário
 
-Você foi convidado para participar do desenvolvimento de um sistema para gerenciar um **Hackathon Universitário**, promovido anualmente por diversas universidades. O sistema tem como principal objetivo facilitar o gerenciamento dos **Projetos** e **Equipes** participantes, além de controlar apresentações, bancas avaliadoras e notas.
+## Autores
+- Maria Clara Gomes Silva de Oliveira
 
-O sistema foi modelado a partir de um diagrama UML, sendo necessário definir atributos e métodos para cada classe envolvida. Toda a gestão dos dados ocorre em memória principal, utilizando classes auxiliares para controlar as coleções de objetos, como equipes, projetos e apresentações. Essas classes seguem o padrão de projeto Singleton, garantindo que apenas uma instância de cada coleção seja utilizada durante a execução do sistema.
+## Visão Geral
+Sistema desenvolvido para gerenciar Hackathons Universitários, com foco no controle de projetos, equipes, apresentações e avaliações. O sistema utiliza o padrão de projeto Singleton para garantir uma única instância das coleções de dados em memória.
 
-As classes de coleção oferecem métodos para incluir e pesquisar elementos, tornando o gerenciamento eficiente e seguro.
+## Arquitetura do Sistema
 
-## Principais Funcionalidades
+### Padrão Singleton
+O sistema implementa o padrão Singleton nos controladores principais:
+- `ProjetoController`: Gerencia a coleção de projetos
+- `EquipeController`: Gerencia a coleção de equipes
+- `ApresentacaoController`: Gerencia a coleção de apresentações
 
-- Cadastro e gerenciamento de equipes e projetos;
-- Controle de apresentações e bancas avaliadoras;
-- Avaliação dos projetos pelos jurados;
-- Listagem dos projetos aprovados (nota final ≥ 7).
+Cada controlador garante:
+- Uma única instância em toda a aplicação
+- Acesso thread-safe através do método `getInstance()`
+- Encapsulamento da coleção de dados
+
+### Estrutura de Diretórios
+```
+Hackathons/
+├── src/
+│   ├── controller/     # Controladores (Singleton)
+│   ├── model/         # Classes de domínio
+│   └── Main.java      # Ponto de entrada da aplicação
+└── DiagramaUML.png    # Diagrama de classes
+```
+
+## Funcionalidades Principais
+
+### Gerenciamento de Equipes
+- Cadastro de equipes com até 5 alunos
+- Vinculação de projetos às equipes
+- Controle de membros e responsáveis
+
+### Gerenciamento de Projetos
+- Cadastro de projetos
+- Vinculação com equipes
+- Controle de apresentações
+- Cálculo de notas finais
+
+### Sistema de Avaliação
+- Formação de bancas avaliadoras (4 jurados)
+- Registro de notas por jurado
+- Cálculo automático de média
+- Filtro de projetos aprovados (nota ≥ 7)
 
 ## Exemplo de Uso
 
-No método `main`, o sistema realiza as seguintes operações:
-
-- Cria 2 equipes com 5 alunos cada;
-- Adiciona um projeto diferente para cada equipe;
-- Cria uma banca avaliadora para cada projeto (cada banca contém 4 jurados);
-- Calcula a nota final de cada projeto a partir da apresentação (média das notas dos jurados);
-- Lista os projetos com nota final ≥ 7 utilizando stream.
-
-## Diagrama UML
-
-O diagrama UML abaixo representa a estrutura inicial do sistema, servindo como base para a modelagem das classes e suas relações.
-
-![Diagrama UML](/Hackathons/DiagramaUML.png)
+O sistema demonstra suas funcionalidades através do método `main`, que:
+1. Cria duas equipes com 5 alunos cada
+2. Associa um projeto único para cada equipe
+3. Configura bancas avaliadoras (4 jurados por projeto)
+4. Calcula notas finais baseadas nas avaliações
+5. Lista projetos aprovados usando Stream API
 
 ## Como Executar
 
-Para compilar e executar o projeto, utilize os comandos abaixo no terminal:
-
+1. Navegue até o diretório do projeto:
 ```sh
 cd "c:\Users\maria\OneDrive\Documentos\Projeto Pm\Hackathons\src"
+```
+
+2. Compile o projeto:
+```sh
 javac controller\ProjetoController.java Main.java
+```
+
+3. Execute a aplicação:
+```sh
 java Main
 ```
+
+## Tecnologias Utilizadas
+- Java
+- Padrão de Projeto Singleton
+- Stream API para manipulação de coleções
+- Programação Orientada a Objetos
